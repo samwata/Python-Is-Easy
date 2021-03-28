@@ -71,4 +71,29 @@ for i in range(5):
 # ----
 # | |
 
+def drawfield(n,m):
+    for row in range(n):
+        if row %2 == 0:
+            #print vertical lines
+            for column in range(m):
+                if column %2 == 0 :
+                    if column != m-1:
+                        print(" ", end="")
+                    else:
+                        print(" ")    
+                else:
+                    print("|", end="")    
+        else:
+            print("-----")
+drawfield(10,5)
 
+#Let us extend it a little using while loop
+while(True):
+    MoveRow = int(input("Please enter the row"))
+    MoveColumn = int(input("Please enter column"))
+    if Player == 1:
+        #Make move for Player 1
+
+    else:
+        #Make move for Player 2
+        
