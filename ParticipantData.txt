@@ -1,5 +1,1 @@
-sam kenya 25 
-jane Tz 22 
-Brian Ug 28 
-John Kenya 23 
-Janet Ug 22 
+Age :23 Samson

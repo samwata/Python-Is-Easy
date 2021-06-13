@@ -9,13 +9,13 @@ for i in range(5):
     CurrentScore = int(input("Enter your Score: "))
     scores.append(CurrentScore)
 
-print(Scores)
+print(scores)
 
 for i in range(5):
-    CurrentScore = float(input("Enter your Score " +str(i+1)": ")) #str(i) adds a the current loop number we are in
+    CurrentScore = float(input("Enter your Score " +str(i+1), ": ")) #str(i) adds a the current loop number we are in
     scores.append(CurrentScore)
     print("The score you entered is:\n"+str(CurrentScore))
-print(Scores)
+print(scores)
 
 #FILE I\O
 # File = open("File name","r") #"r", "w", "a", "r+" ---> read and write
@@ -88,12 +88,13 @@ def drawfield(n,m):
 drawfield(10,5)
 
 #Let us extend it a little using while loop
-while(True):
-    MoveRow = int(input("Please enter the row"))
-    MoveColumn = int(input("Please enter column"))
-    if Player == 1:
-        #Make move for Player 1
+# while(True):
+#     MoveRow = int(input("Please enter the row"))
+#     MoveColumn = int(input("Please enter column"))
+#     if Player == 1:
+#         #Make move for Player 1
 
-    else:
+#         else:
+
         #Make move for Player 2
         
