@@ -1,5 +1,7 @@
 
 from termcolor import colored, cprint
+import os
+import sys
         
 CurrentField = [[" "," ", " "," "," "," "," "],[" "," ", " "," "," "," "," "],[" "," ", " "," "," "," "," "],[" "," ", " "," "," "," "," "],[" "," ", " "," "," "," "," "],[" "," ", " "," "," "," "," "],[" "," ", " "," "," "," "," "]]   
 
@@ -94,8 +96,8 @@ def checkIfFourInBackwardDiagonal(column_matrix, player):
                 next
     return False
 
-def isValidMove(column_no):
-    if column_no >=1 and column_no <=7:
+def isValidMove(column_number):
+    if column_number >=1 and column_number <=7:
         return True
     else:
         return False
@@ -113,14 +115,14 @@ def startConnect4():
     no_win = True
     winner = ""
     while(no_win):
-        ask_column = colored('Player ' + str(player) + ' turn, enter the column number:\n', "yellow",attrs=["bold"])
-        column_no = input(ask_column)
-        if column_no:
-            column_no = int(column_no)     
-            if isValidMove(column_no) == False:
-                cprint('Hey, this is not a right move. Try again.\n', 'red', attrs=['bold'])
+        ask_column = colored('Player ' + str(player) + ' turn, input column number:\n', "yellow",attrs=["bold"])
+        column_number = input(ask_column)
+        if column_number:
+            column_number = int(column_number)     
+            if isValidMove(column_number) == False:
+                cprint('Please input correct move.\n', 'red', attrs=['bold'])
             else:
-                updated_flag = updateBoard(column_no - 1, player)
+                updated_flag = updateBoard(column_number - 1, player)
                 if updated_flag:
                     print("")
                     current_player = player
@@ -141,9 +143,9 @@ def startConnect4():
                             winner = current_player
                             no_win = False                   
                 else:
-                    cprint('Hey, this is not a right move. Try again.\n', 'red', attrs=['bold'])
+                    cprint('Please input correct move.\n', 'red', attrs=['bold'])
         else:
-            cprint('Hey, this is not a right move. Try again.\n', 'red', attrs=['bold'])
+            cprint('Please input correct move.\n', 'red', attrs=['bold'])
 
     if winner == "X":
         winner = "1"
@@ -152,7 +154,7 @@ def startConnect4():
     cprint('THE WINNER IS PLAYER '+ str(winner), 'blue', attrs=['bold'])
 
 
-print('Starting Connect 4 Game... Get ready!\n')
+print('Starting new game!\n')
 
 draw_board(CurrentField)
 startConnect4()
