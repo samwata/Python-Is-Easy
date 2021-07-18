@@ -13,7 +13,7 @@ def draw_board(CurrentField):
             for column in range(13):
                 if column % 2 == 0:
                     practical_column = int(column/2)
-                    color = "white"
+                    color = "green"
                     if CurrentField[practical_column][practical_row] == "X":
                         color = "red"
                     tile = colored(CurrentField[practical_column][practical_row], color, attrs=['bold'])
@@ -26,7 +26,7 @@ def draw_board(CurrentField):
         else:
             print("-------------")
     print("\n")
-draw_board()
+draw_board(CurrentField)
 
 def updateBoard(num, player):
     column = CurrentField[num]
@@ -115,7 +115,7 @@ def startConnect4():
     no_win = True
     winner = ""
     while(no_win):
-        ask_column = colored('Player ' + str(player) + ' turn, input column number:\n', "yellow",attrs=["bold"])
+        ask_column = colored('Player ' + str(player) + ' turn, input column number:\n', "green",attrs=["bold"])
         column_number = input(ask_column)
         if column_number:
             column_number = int(column_number)     
@@ -151,7 +151,7 @@ def startConnect4():
         winner = "1"
     else:
         winner = "2"
-    cprint('THE WINNER IS PLAYER '+ str(winner), 'blue', attrs=['bold'])
+    cprint('THE WINNER IS PLAYER '+ str(winner), 'green', attrs=['bold'])
 
 
 print('Starting new game!\n')
