@@ -1,49 +1,92 @@
-#We are now going to incooperate the function into our while loop
+# Tic-Tac-Toe Part B
 
-def drawfield(field):
+
+def draw_field(field):
     for row in range(5):
-        if row %2 == 0: #0,2,4
-            #Since we need values 0,1,2 according to our list
-            #We will divide the values that are divisible by 2 to get 0,1,2
-            PracticalRow = int(row/2) #0,1,2
-            #print vertical lines
+        if row % 2 == 0:
+            practical_row = row // 2
             for column in range(5):
-                if column %2 == 0 : # 0,2,4 that pass here
-                    #Since we need values 0,1,2 according to our list
-                    #We will divide the values that are divisible by 2 to get 0,1,2
-                    PracticalColumn = int(column/2) #0,1,2
+                if column % 2 == 0:
+                    practical_column = column // 2
                     if column != 4:
-                        print(field[PracticalColumn][PracticalRow], end="")
+                        print(field[practical_column][practical_row], end="")
                     else:
-                        print(field[PracticalColumn][PracticalRow])    
+                        print(field[practical_column][practical_row])
                 else:
-                    print("|", end="")    
+                    print("|", end="")
         else:
             print("-----")
+    print()
 
 
-#Let us extend it a little using while loop
+def check_winner(field):
+    # Check rows
+    for row in range(3):
+        if field[0][row] != " " and field[0][row] == field[1][row] == field[2][row]:
+            return field[0][row]
 
-Player = 1
-#Create a list that has all elemnts 
-#Eache element in a list has 3 elemnts inside it
-CurrentField = [[" "," "," ",], [" "," "," ",], [" "," "," ",]]
+    # Check columns
+    for col in range(3):
+        if field[col][0] != " " and field[col][0] == field[col][1] == field[col][2]:
+            return field[col][0]
 
-drawfield(CurrentField)
-while(True):
-    print("Player turn: ",Player)
-    MoveRow = int(input("Please enter the row\n"))
-    MoveColumn = int(input("Please enter column\n"))
-    if Player == 1:
-        #Make move for Player 1
-        if CurrentField[MoveColumn][MoveRow] == " " :
-            CurrentField[MoveColumn][MoveRow] = "X"
-            Player = 2
-        
+    # Check diagonals
+    if field[0][0] != " " and field[0][0] == field[1][1] == field[2][2]:
+        return field[0][0]
+    if field[2][0] != " " and field[2][0] == field[1][1] == field[0][2]:
+        return field[2][0]
 
-    else:
-        #Make move for Player 2
-        if CurrentField[MoveColumn][MoveRow] == " ":
-            CurrentField[MoveColumn][MoveRow] = "O"
-            Player = 1
-    drawfield(CurrentField)
+    return None
+
+
+def is_board_full(field):
+    for col in field:
+        if " " in col:
+            return False
+    return True
+
+
+def start_game():
+    current_field = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+    player = 1
+
+    print("Welcome to Tic-Tac-Toe!\n")
+    print("Enter row and column as numbers 0, 1, or 2.\n")
+    draw_field(current_field)
+
+    while True:
+        tile = "X" if player == 1 else "O"
+        print(f"Player {player} ({tile}) turn:")
+
+        try:
+            move_row = int(input("Please enter the row (0-2): "))
+            move_column = int(input("Please enter column (0-2): "))
+        except ValueError:
+            print("Invalid input. Please enter a number between 0 and 2.\n")
+            continue
+
+        if move_row not in range(3) or move_column not in range(3):
+            print("Out of range. Please enter 0, 1, or 2.\n")
+            continue
+
+        if current_field[move_column][move_row] != " ":
+            print("That space is already taken. Try again.\n")
+            continue
+
+        current_field[move_column][move_row] = tile
+        draw_field(current_field)
+
+        winner = check_winner(current_field)
+        if winner:
+            print(f"Player {player} ({tile}) wins!\n")
+            break
+
+        if is_board_full(current_field):
+            print("It's a draw!\n")
+            break
+
+        player = 2 if player == 1 else 1
+
+
+# Start the game
+start_game()
