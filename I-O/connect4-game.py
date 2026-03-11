@@ -158,3 +158,5 @@ print('Starting new game!\n')
 
 draw_board(CurrentField)
 startConnect4()
+
+// worked on by samson
